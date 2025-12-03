@@ -4,18 +4,22 @@ package org.example;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args ){
+public class App {
+    public static void main(String[] args) {
+
         Paquet paquet = new Paquet();
-
-        System.out.println("Nombre de cartes : " + paquet.nombreCartes());
-
         paquet.melanger();
 
-        System.out.println("Carte tirée : " + paquet.tirerCarte());
-        System.out.println("Carte tirée : " + paquet.tirerCarte());
+        MainJoueur main = new MainJoueur();
 
-        System.out.println("Cartes restantes : " + paquet.nombreCartes());
+        // Donner 5 cartes au joueur
+        for (int i = 0; i < 5; i++) {
+            main.ajouterCarte(paquet.tirerCarte());
+        }
+
+        System.out.println("Main du joueur : ");
+        main.afficher();
+
+        System.out.println("Cartes restantes dans le paquet : " + paquet.nombreCartes());
     }
 }
