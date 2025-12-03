@@ -2,6 +2,8 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainJoueur {
 
@@ -29,8 +31,16 @@ public class MainJoueur {
 
     public String evaluerMain() {
 
+        if (cartes.size() != 5) {
+            return "Main incomplète";
+        }
+
         if (estUneCouleur() && estUneSuite()) {
             return "Quinte Flush";
+        }
+
+        if (estUnFull()) {
+            return "Full House";
         }
 
         if (estUneCouleur()) {
@@ -41,27 +51,31 @@ public class MainJoueur {
             return "Suite (Straight)";
         }
 
-        int compteur = 0;
+        HashMap<String, Integer> compteur = new HashMap<>();
 
-        for (int i = 0; i < cartes.size(); i++) {
-            for (int j = i + 1; j < cartes.size(); j++) {
-                if (cartes.get(i).getValeur().equals(cartes.get(j).getValeur())) {
-                    compteur++;
-                }
-            }
+        for (Carte c : cartes) {
+            compteur.put(c.getValeur(), compteur.getOrDefault(c.getValeur(), 0) + 1);
         }
 
-        if (compteur == 1)
-            return "Paire";
-        else if (compteur == 2)
-            return "Deux paires";
-        else if (compteur == 3)
-            return "Brelan";
-        else if (compteur == 6)
+        if (compteur.containsValue(4)) {
             return "Carré";
+        }
 
-        return "Aucune combinaison";
+        if (compteur.containsValue(3)) {
+            return "Brelan";
+        }
+
+        if (compteur.size() == 3) {
+            return "Deux paires";
+        }
+
+        if (compteur.size() == 4) {
+            return "Paire";
+        }
+
+        return "Aucune Combinaison";
     }
+
 
 
     // Vérifier s'il y a une couleur (Flush)
@@ -109,6 +123,28 @@ public class MainJoueur {
             case "V" -> 11;
             default -> Integer.parseInt(v);
         };
+    }
+
+    // Vérifier si c'est un Full House
+    public boolean estUnFull() {
+
+        if (cartes.size() != 5) return false;
+
+        HashMap<String, Integer> compteur = new HashMap<>();
+
+        for (Carte c : cartes) {
+            String valeur = c.getValeur();
+
+            if (compteur.containsKey(valeur)) {
+                compteur.put(valeur, compteur.get(valeur) + 1);
+            } else {
+                compteur.put(valeur, 1);
+            }
+        }
+
+        if (compteur.size() != 2) return false;
+
+        return compteur.containsValue(3) && compteur.containsValue(2);
     }
 
 }
