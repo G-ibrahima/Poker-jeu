@@ -6,8 +6,16 @@ package org.example;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main( String[] args ){
+        Paquet paquet = new Paquet();
+
+        System.out.println("Nombre de cartes : " + paquet.nombreCartes());
+
+        paquet.melanger();
+
+        System.out.println("Carte tirée : " + paquet.tirerCarte());
+        System.out.println("Carte tirée : " + paquet.tirerCarte());
+
+        System.out.println("Cartes restantes : " + paquet.nombreCartes());
     }
 }
