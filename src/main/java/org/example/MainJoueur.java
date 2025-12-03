@@ -25,4 +25,29 @@ public class MainJoueur {
     public int nombreCartes() {
         return cartes.size();
     }
+
+    public String evaluerMain() {
+
+        int compteur = 0;
+
+        for (int i = 0; i < cartes.size(); i++) {
+            for (int j = i + 1; j < cartes.size(); j++) {
+
+                // Si deux cartes ont la même valeur = PAIRE
+                if (cartes.get(i).getValeur().equals(cartes.get(j).getValeur())) {
+                    compteur++;
+                }
+            }
+        }
+
+        if (compteur == 1)
+            return "Paire";
+        else if (compteur == 3)
+            return "Double paire";
+        else if (compteur == 6)
+            return "Brelan ou mieux";
+
+        return "Aucune combinaison";
+    }
+
 }
