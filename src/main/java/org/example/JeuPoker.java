@@ -105,5 +105,15 @@ public class JeuPoker{
         System.out.println("Merci d'avoir joué ! Capital final : " + capital + "$");
     }
 
+    public int getCapital() {
+        return capital;
+    }
 
+    public MainJoueur getMainJoueur() {
+        return mainJoueur;
+    }
+
+    public void setCapital(int capital) {
+        this.capital = capital;
+    }
 }

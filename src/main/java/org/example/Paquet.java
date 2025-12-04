@@ -29,8 +29,4 @@ public class Paquet {
         return cartes.remove(0);
     }
 
-    // Juste pour vérifier le nombre de cartes
-    public int nombreCartes() {
-        return cartes.size();
-    }
 }

@@ -147,4 +147,14 @@ public class MainJoueur {
         return compteur.containsValue(3) && compteur.containsValue(2);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Carte c : cartes) {
+            sb.append(c).append("  ");
+        }
+        return sb.toString();
+    }
+
+
 }
