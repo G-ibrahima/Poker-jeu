@@ -6,11 +6,7 @@ package org.example;
  */
 public class App {
     public static void main(String[] args) {
-
-        JeuPoker jeu = new JeuPoker();
-
-        jeu.distribuer();
-        jeu.afficherJeu();
-        jeu.comparer();
+            JeuPoker jeu = new JeuPoker();
+            jeu.jouer();
     }
 }
